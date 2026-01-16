@@ -1,10 +1,10 @@
-# A light-weight and pure python framework to add new triton backend and use pure python MLIR compiler (xDsl) 
+# A light-weight and pure python framework to add new triton backend and use pure python form backend compiler
 
 Researchers and developers may want to add new backend to triton, for adapting new hardward or improving the current compiling pipeline. Common problems met can be:
 
 * heavy-weight: need to fork the whole triton project, add or modify the MLIR related code, recompile the project 
 
-* pure python: MLIR is processed in C++ and writing C++ is painful
+* painful c++ programming: MLIR is processed in C++ and writing C++ is painful
 
 This framework makes possible to:
 
@@ -48,7 +48,7 @@ class ExampleDriver(DriverBase):
    ...
 ```
 
-* Registering to triton
+* Register to triton
 ```
 import triton
 from ttpy.examples.mybackend.driver import ExampleDriver
@@ -60,7 +60,6 @@ register_xdsl_backend('example', ExampleBackend, ExampleDriver)
 @triton.jit
 def your_kernel():
     ...
-
 
 ```
 
