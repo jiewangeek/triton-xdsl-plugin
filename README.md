@@ -1,4 +1,4 @@
-# A light-weight and pure python framework to add new triton backend and use pure python form backend compiler
+# ttpy: A light-weight framework to add new triton backend and pure python programming for backend compiler
 
 Researchers and developers may want to add new backend to triton, for adapting new hardward or improving the current compiling pipeline. Common problems met can be:
 
