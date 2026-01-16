@@ -65,7 +65,7 @@ class ExampleBackend(XdslBaseBackEnd):
         return None
 
     def add_stages(self, stages, options, language):
-        stages["ttir"] = lambda src, metadata: XdslBaseBackEnd.make_xdsl_ttir(src, metadata, options)
+        stages["ttir"] = lambda src, metadata: self.make_xdsl_ttir(src, metadata, options)
         stages["exampleir"] = lambda src, metadata: self.make_exampleir(src, metadata, options)
 
     @functools.lru_cache()

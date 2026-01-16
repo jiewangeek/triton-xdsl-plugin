@@ -47,10 +47,6 @@ class ExampleUtils(object):
           1024        # n_max_threads
         )
 
-class TVMDriver(DriverBase):
-
-    def __init__(self):
-        super().__init__()
 
 class ExampleDriver(DriverBase):
 
@@ -59,7 +55,6 @@ class ExampleDriver(DriverBase):
         self.launcher_cls = ExampleLauncher
         self.utils = ExampleUtils()
 
-    # Remember to use triton.runtime.driver.set_active(TVMDriver())
     @staticmethod
     def is_active():
         return False

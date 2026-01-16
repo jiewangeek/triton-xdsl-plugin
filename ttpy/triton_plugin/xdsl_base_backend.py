@@ -27,8 +27,7 @@ class XdslBaseBackEnd(BaseBackend):
         #from ttpy.dialects import ttir
         #self.ctx.load_dialect(ttir.Triton_dialect)
 
-    @staticmethod    
-    def convert_to_xdsl_ir(mod):
+    def convert_to_xdsl_ir(self, mod):
         mlir_str = str(mod)
         print('===== MLIR before converting: ', dir(mod), mlir_str)
         # Create MLIR context and register dialects
@@ -44,8 +43,7 @@ class XdslBaseBackEnd(BaseBackend):
 
         return module
 
-    @staticmethod
-    def make_xdsl_ttir(mod, metadata, opt):
+    def make_xdsl_ttir(self, mod, metadata, opt, convertToXdsl):
         pm = ir.pass_manager(mod.context)
         pm.enable_debug()
         passes.common.add_inliner(pm)
@@ -63,7 +61,10 @@ class XdslBaseBackEnd(BaseBackend):
             cluster_info.clusterDimZ = opt.cluster_dims[2]
         metadata["cluster_dims"] = (cluster_info.clusterDimX, cluster_info.clusterDimY, cluster_info.clusterDimZ)
         metadata["name"] = "mykernel"
-        return XdslBaseBacked.convert_to_xdsl_ir(mod)
+        if convertToXdsl:
+            return self.convert_to_xdsl_ir(mod)
+        else:
+            return mod
 
 
 def register_xdsl_backend(name:str, backEnd, driver):
