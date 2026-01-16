@@ -22,13 +22,15 @@ class XdslBaseBackEnd(BaseBackend):
         self.ctx.load_dialect(func.Func)
         self.ctx.load_dialect(arith.Arith)
         self.ctx.load_dialect(scf.Scf)
-        from ttpy.dialects import ttir
-        self.ctx.load_dialect(ttir.Triton_dialect)
+
+        #TODO: it seems there are problems in loading the IR
+        #from ttpy.dialects import ttir
+        #self.ctx.load_dialect(ttir.Triton_dialect)
 
     @staticmethod    
     def convert_to_xdsl_ir(mod):
         mlir_str = str(mod)
-        print('===== before: ', dir(mod), mlir_str)
+        print('===== MLIR before converting: ', dir(mod), mlir_str)
         # Create MLIR context and register dialects
 
         # Parse the MLIR string

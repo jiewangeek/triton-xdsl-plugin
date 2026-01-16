@@ -38,7 +38,7 @@ class ExampleUtils(object):
     def load_binary(name, kernel_asm, shared, device):
         mod_name = "fack"
         def fake_wrapped (*args, **kwargs):
-            print ("hello world!")
+            print ("This is a fack result. You should make the python wrapper of your compiling reuslt. Hello world!")
         return (
           mod_name,   # module
           fake_wrapped,    # function
