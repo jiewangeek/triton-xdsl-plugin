@@ -2,8 +2,9 @@ import torch
 
 import triton
 import triton.language as tl
-from examples.mybackend.driver import ExampleDriver
-from examples.mybackend.backend import register_xdsl_backend, ExampleBackend
+from ttpy.examples.mybackend.driver import ExampleDriver
+from ttpy.examples.mybackend.backend import ExampleBackend
+from ttpy.triton_plugin.xdsl_base_backend import register_xdsl_backend
 
 register_xdsl_backend('example', ExampleBackend, ExampleDriver)
 

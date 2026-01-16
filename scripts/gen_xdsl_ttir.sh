@@ -4,11 +4,7 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 thirdparty_dir="$SCRIPT_DIR"/../thirdparty
 mkdir -p "$thirdparty_dir"
 
-#<<
-thirdparty_dir="$SCRIPT_DIR"/../..
-#>>
-
-dialect_dir="$SCRIPT_DIR"/../dialects
+dialect_dir="$SCRIPT_DIR"/../ttpy/dialects
 mkdir -p "$dialect_dir"
 
 triton_repo="$thirdparty_dir"/triton
@@ -32,7 +28,7 @@ for file in "${triton_td_files[@]}"; do
     echo "------ 1"
     if [[ -e "$triton_repo"/include/triton/Dialect/Triton/IR/"$file" ]]; then
          echo "---------2"
-         #llvm-tblgen-17 -D ttir "$triton_repo"/include/triton/Dialect/Triton/IR/"$file" -I "$triton_repo"/include/ -I  "$llvm_repo"/mlir/include --dump-json > "$dialect_dir"/"$file".json
+         llvm-tblgen-17 -D ttir "$triton_repo"/include/triton/Dialect/Triton/IR/"$file" -I "$triton_repo"/include/ -I  "$llvm_repo"/mlir/include --dump-json > "$dialect_dir"/"$file".json
 	 xdsl-tblgen -i "$dialect_dir"/"$file".json -o "$dialect_dir"/"$file".py 
     else
         echo "Warning: $file does not exist." >&2
